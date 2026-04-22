@@ -47,7 +47,7 @@ def transcribe_video(video_path: str) -> List[Dict]:
     Returns sentence-level transcription with timestamps.
     Whisper treats each segment as a sentence/phrase.
     """
-    print("🔊 Loading Whisper model...")
+    print(" Loading Whisper model...")
     model = whisper.load_model(WHISPER_MODEL)
 
     print(f"🎬 Transcribing video: {video_path}")
@@ -80,7 +80,7 @@ def store_sentences_in_vector_db(
     video_id: str,
     sentences: List[Dict]
 ):
-    print("🧠 Initializing Vector DB...")
+    print("nitializing Vector DB...")
     client = chromadb.Client(
         Settings(persist_directory=VECTOR_DB_DIR)
     )
@@ -114,7 +114,7 @@ def store_sentences_in_vector_db(
         ids=ids
     )
 
-    print(f"✅ Stored {len(sentences)} sentences for video_id='{video_id}'")
+    print(f"Stored {len(sentences)} sentences for video_id='{video_id}'")
 
 
 # -----------------------------
@@ -138,7 +138,7 @@ def query_video_chat(
     with timestamps.
     """
 
-    print(f"🔍 Querying video '{video_id}' for: '{query}'")
+    print("Querying video '{video_id}' for: '{query}'")
 
     # Load embedding model
     embedder = SentenceTransformer(EMBEDDING_MODEL)
@@ -202,7 +202,7 @@ if __name__ == "__main__":
         video_id=VIDEO_ID
     )
 
-    print("🎉 Video is ready for chat-based retrieval!")
+    print(" Video is ready for chat-based retrieval!")
 
     # -----------------------------
     # QUERY DEMO
@@ -217,9 +217,9 @@ if __name__ == "__main__":
         top_k=3
     )
 
-    print("\n📌 Top Matches:\n")
+    print("\n Top Matches:\n")
     for idx, r in enumerate(results, 1):
         print(f"[{idx}] {r['text']}")
         print(f"    ⏱ {seconds_to_hhmmss(r['start_time'])} → {seconds_to_hhmmss(r['end_time'])}")
-        print(f"    🎯 Similarity score: {r['score']}")
+        print(f"     Similarity score: {r['score']}")
         print("-" * 60)

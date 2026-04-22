@@ -55,7 +55,7 @@ if uploaded_file and not st.session_state.video_ingested:
 
     st.video(file_path)
 
-    if st.button("🚀 Ingest Video "):
+    if st.button("Ingest Video "):
         with st.spinner("Ingesting video..."):
             ingest_video_for_chat(
                 video_path=st.session_state.video_path,
@@ -112,7 +112,7 @@ if st.session_state.video_ingested:
     # -----------------------------
     # RESET OPTION
     # -----------------------------
-    if st.button("🔁 Upload & Ingest New Video"):
+    if st.button(" Upload & Ingest New Video"):
         st.session_state.video_id = None
         st.session_state.video_path = None
         st.session_state.video_ingested = False
